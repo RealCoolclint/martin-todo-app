@@ -43,6 +43,25 @@
         .date {
             font-size: 1.2em;
             opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .brief-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .brief-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
         
         .content {
@@ -161,6 +180,294 @@
             border-top: 1px solid #e9ecef;
         }
         
+        .validation-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .validate-day-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .validate-day-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .validate-day-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .validation-message {
+            margin-top: 15px;
+            padding: 15px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .history-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .history-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .history-timeline {
+            display: none;
+            margin: 20px 0;
+        }
+        
+        .history-timeline.visible {
+            display: block;
+        }
+        
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .history-item.excellent {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .history-item.good {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        
+        .history-item.needs-work {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .history-date {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .history-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .score-percentage {
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        .score-badge {
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .badge-excellent {
+            background: #28a745;
+            color: white;
+        }
+        
+        .badge-good {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .badge-needs-work {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .toggle-history-btn {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .toggle-history-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .brief-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .brief-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            height: 80%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .brief-popup-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brief-popup-title {
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .close-popup {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-popup:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .brief-popup-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .brief-instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .brief-link-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .claude-link-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .claude-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+        
+        .update-todo-section {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .update-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .update-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+        
         @media (max-width: 600px) {
             .container {
                 margin: 10px;
@@ -186,6 +493,7 @@
         <div class="header">
             <h1>🎬 To-Do Martin</h1>
             <div class="date" id="currentDate">Lundi 30 Juin 2025</div>
+            <button class="brief-button" id="briefButton">💬 Brief avec Claude</button>
         </div>
         
         <div class="content">
@@ -310,9 +618,79 @@
                 <div class="stats-label">tâches terminées sur <span id="totalTasks">12</span></div>
             </div>
             
+            <div class="validation-section">
+                <button class="validate-day-btn" id="validateDayBtn">
+                    ✅ Valider la journée et passer au suivant
+                </button>
+                <div class="validation-message" id="validationMessage" style="display: none;">
+                    🎉 Journée validée ! Prêt pour demain.
+                </div>
+            </div>
+            
+            <div class="history-section">
+                <h2 class="section-title">
+                    <span class="emoji">📊</span>
+                    Historique Performance
+                </h2>
+                <div class="history-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="streakDays">0</div>
+                        <div class="stat-label">jours de suite</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="avgCompletion">0%</div>
+                        <div class="stat-label">moyenne</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalDays">0</div>
+                        <div class="stat-label">jours trackés</div>
+                    </div>
+                </div>
+                <div class="history-timeline" id="historyTimeline">
+                    <!-- Historique généré dynamiquement -->
+                </div>
+                <button class="toggle-history-btn" id="toggleHistoryBtn">📈 Voir l'historique détaillé</button>
+            </div>
+            
             <div class="footer">
                 🎉 <strong>Ce soir : Anniversaire Marion au Poulish - 20h30</strong><br>
                 🌡️ Rappel canicule : 40°C aujourd'hui - Penser hydratation + pauses
+            </div>
+        </div>
+    </div>
+    
+    <!-- Popup Briefing -->
+    <div class="brief-popup-overlay" id="briefPopupOverlay">
+        <div class="brief-popup">
+            <div class="brief-popup-header">
+                <div class="brief-popup-title">💬 Briefing Quotidien avec Claude</div>
+                <button class="close-popup" id="closePopup">✕</button>
+            </div>
+            <div class="brief-popup-content">
+                <div class="brief-instructions">
+                    <h3>🎯 Comment ça marche :</h3>
+                    <ol>
+                        <li><strong>Clique</strong> sur "Ouvrir Claude" ci-dessous</li>
+                        <li><strong>Fais notre briefing</strong> quotidien ensemble</li>
+                        <li><strong>Copie</strong> la to-do générée par Claude</li>
+                        <li><strong>Reviens ici</strong> et clique "Mettre à jour"</li>
+                        <li><strong>Colle</strong> ta nouvelle to-do !</li>
+                    </ol>
+                </div>
+                
+                <div class="brief-link-section">
+                    <a href="https://claude.ai/chat" target="_blank" class="claude-link-btn">
+                        🚀 Ouvrir Claude dans un nouvel onglet
+                    </a>
+                    <p><em>Dis simplement : "Salut ! C'est l'heure de mon briefing quotidien Martin !"</em></p>
+                </div>
+                
+                <div class="update-todo-section">
+                    <h4>✅ Après ton briefing :</h4>
+                    <p>Claude va te donner une nouvelle to-do. Copie-la et colle-la ici :</p>
+                    <textarea id="todoInput" placeholder="Colle ici ta to-do générée par Claude..." style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin: 10px 0;"></textarea>
+                    <button class="update-btn" id="updateTodoBtn">🔄 Mettre à jour ma to-do</button>
+                </div>
             </div>
         </div>
     </div>
@@ -323,9 +701,51 @@
         const progressBar = document.getElementById('progressBar');
         const completedTasksSpan = document.getElementById('completedTasks');
         const totalTasksSpan = document.getElementById('totalTasks');
+        const validateBtn = document.getElementById('validateDayBtn');
+        const validationMessage = document.getElementById('validationMessage');
+        const toggleHistoryBtn = document.getElementById('toggleHistoryBtn');
+        const historyTimeline = document.getElementById('historyTimeline');
+        const briefButton = document.getElementById('briefButton');
+        const briefPopupOverlay = document.getElementById('briefPopupOverlay');
+        const closePopup = document.getElementById('closePopup');
+        const updateTodoBtn = document.getElementById('updateTodoBtn');
+        const todoInput = document.getElementById('todoInput');
         
-        // Charger l'état sauvegardé
+        // Charger l'état sauvegardé et historique
         loadTaskStates();
+        updateHistoryStats();
+        
+        // Gestion popup briefing
+        briefButton.addEventListener('click', function() {
+            briefPopupOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closePopup.addEventListener('click', function() {
+            briefPopupOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        briefPopupOverlay.addEventListener('click', function(e) {
+            if (e.target === briefPopupOverlay) {
+                briefPopupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        updateTodoBtn.addEventListener('click', function() {
+            const newTodoContent = todoInput.value.trim();
+            if (newTodoContent) {
+                // Ici on pourrait parser le contenu et mettre à jour l'app
+                // Pour l'instant, on affiche juste un message
+                alert('Fonctionnalité en développement ! Pour l\'instant, génère une nouvelle page HTML avec Claude.');
+                briefPopupOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                todoInput.value = '';
+            } else {
+                alert('Veuillez coller votre to-do d\'abord !');
+            }
+        });
         
         checkboxes.forEach((checkbox, index) => {
             checkbox.addEventListener('change', function() {
@@ -341,6 +761,178 @@
                 saveTaskStates();
             });
         });
+        
+        // Toggle historique détaillé
+        toggleHistoryBtn.addEventListener('click', function() {
+            historyTimeline.classList.toggle('visible');
+            if (historyTimeline.classList.contains('visible')) {
+                this.textContent = '📈 Masquer l\'historique';
+                generateHistoryTimeline();
+            } else {
+                this.textContent = '📈 Voir l\'historique détaillé';
+            }
+        });
+        
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.addEventListener('change', function() {
+                const taskItem = this.closest('.task-item');
+                
+                if (this.checked) {
+                    taskItem.classList.add('completed');
+                } else {
+                    taskItem.classList.remove('completed');
+                }
+                
+                updateProgress();
+                saveTaskStates();
+            });
+        });
+        
+        // Gestion validation journée
+        validateBtn.addEventListener('click', function() {
+            const completedTasks = document.querySelectorAll('.checkbox:checked').length;
+            const totalTasks = checkboxes.length;
+            
+            // Sauvegarder le bilan de la journée
+            const dayReport = {
+                date: new Date().toDateString(),
+                completedTasks: completedTasks,
+                totalTasks: totalTasks,
+                percentage: Math.round((completedTasks / totalTasks) * 100),
+                validatedAt: new Date().toISOString()
+            };
+            
+            // Ajouter à l'historique
+            addToHistory(dayReport);
+            
+            localStorage.setItem('martinLastDayReport', JSON.stringify(dayReport));
+            
+            // Afficher message de validation
+            validationMessage.style.display = 'block';
+            validateBtn.disabled = true;
+            validateBtn.textContent = '✅ Journée validée';
+            
+            // Reset automatique après 3 secondes pour la démo
+            setTimeout(() => {
+                if (confirm('Voulez-vous réinitialiser pour une nouvelle journée ?')) {
+                    resetForNewDay();
+                }
+            }, 2000);
+        });
+        
+        function resetForNewDay() {
+            // Décocher toutes les tâches
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.closest('.task-item').classList.remove('completed');
+            });
+            
+            // Reset interface
+            validateBtn.disabled = false;
+            validateBtn.textContent = '✅ Valider la journée et passer au suivant';
+            validationMessage.style.display = 'none';
+            
+            // Clear storage pour nouveau jour
+            localStorage.removeItem('martinTodoStates');
+            
+            updateProgress();
+            updateHistoryStats();
+        }
+        
+        function addToHistory(dayReport) {
+            let history = JSON.parse(localStorage.getItem('martinHistory') || '[]');
+            
+            // Éviter les doublons pour la même date
+            history = history.filter(item => item.date !== dayReport.date);
+            
+            // Ajouter le nouveau rapport
+            history.push(dayReport);
+            
+            // Garder seulement les 30 derniers jours
+            history = history.slice(-30);
+            
+            localStorage.setItem('martinHistory', JSON.stringify(history));
+        }
+        
+        function updateHistoryStats() {
+            const history = JSON.parse(localStorage.getItem('martinHistory') || '[]');
+            
+            if (history.length === 0) {
+                document.getElementById('streakDays').textContent = '0';
+                document.getElementById('avgCompletion').textContent = '0%';
+                document.getElementById('totalDays').textContent = '0';
+                return;
+            }
+            
+            // Calculer la moyenne
+            const avgCompletion = Math.round(
+                history.reduce((sum, day) => sum + day.percentage, 0) / history.length
+            );
+            
+            // Calculer la streak (jours consécutifs avec >70%)
+            let streak = 0;
+            for (let i = history.length - 1; i >= 0; i--) {
+                if (history[i].percentage >= 70) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+            
+            document.getElementById('streakDays').textContent = streak;
+            document.getElementById('avgCompletion').textContent = avgCompletion + '%';
+            document.getElementById('totalDays').textContent = history.length;
+        }
+        
+        function generateHistoryTimeline() {
+            const history = JSON.parse(localStorage.getItem('martinHistory') || '[]');
+            const timeline = document.getElementById('historyTimeline');
+            
+            if (history.length === 0) {
+                timeline.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Aucun historique disponible</p>';
+                return;
+            }
+            
+            // Trier par date décroissante
+            history.sort((a, b) => new Date(b.validatedAt) - new Date(a.validatedAt));
+            
+            let html = '';
+            history.forEach(day => {
+                const percentage = day.percentage;
+                let className = 'history-item';
+                let badge = '';
+                
+                if (percentage >= 90) {
+                    className += ' excellent';
+                    badge = '<span class="score-badge badge-excellent">Excellent</span>';
+                } else if (percentage >= 70) {
+                    className += ' good';
+                    badge = '<span class="score-badge badge-good">Bien</span>';
+                } else {
+                    className += ' needs-work';
+                    badge = '<span class="score-badge badge-needs-work">À améliorer</span>';
+                }
+                
+                const date = new Date(day.validatedAt).toLocaleDateString('fr-FR', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short'
+                });
+                
+                html += `
+                    <div class="${className}">
+                        <div class="history-date">${date}</div>
+                        <div class="history-score">
+                            <span class="score-percentage">${percentage}%</span>
+                            <span style="color: #666;">(${day.completedTasks}/${day.totalTasks})</span>
+                            ${badge}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            timeline.innerHTML = html;
+        }
         
         function updateProgress() {
             const totalTasks = checkboxes.length;
