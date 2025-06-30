@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Martin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .date {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        .task-list {
+            list-style: none;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .task-item:hover {
+            background: #e9ecef;
+        }
+        
+        .task-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+            background: #d4edda;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        
+        .task-text {
+            flex: 1;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .task-time {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .task-desc {
+            color: #666;
+            margin-top: 4px;
+            font-size: 0.9em;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        .stats {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .stats-number {
+            font-size: 2em;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .stats-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 12px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 To-Do Martin</h1>
+            <div class="date" id="currentDate">Lundi 30 Juin 2025</div>
+        </div>
+        
+        <div class="content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">🔥</span>
+                    Urgent Entre Entretiens
+                </h2>
+                <ul class="task-list">
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task1">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Appeler équitation Nina à Saint-Lunaire</strong> (galop 3 août) → Priorité absolue à caler entre les entretiens</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">📅</span>
+                    Entretiens Après-midi
+                </h2>
+                <ul class="task-list">
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task2">
+                        <div class="task-text">
+                            <div class="task-time">14h30</div>
+                            <div class="task-desc">Eva Florès (alternance vidéo)</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task3">
+                        <div class="task-text">
+                            <div class="task-time">15h30</div>
+                            <div class="task-desc">Marlyze Ouéwa</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task4">
+                        <div class="task-text">
+                            <div class="task-time">16h15</div>
+                            <div class="task-desc">Maël Das Neves</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task5">
+                        <div class="task-text">
+                            <div class="task-time">17h00</div>
+                            <div class="task-desc">Léa Ngov</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">🎯</span>
+                    Tâches Pro à Caler
+                </h2>
+                <ul class="task-list">
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task6">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Série "Étude mode d'emploi"</strong> : avancer (entre entretiens ou fin de journée)</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task7">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Point hebdo Virginie</strong> : préparer (priorité haute)</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task8">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Tour tournages demain avec Pascal</strong> (OPS) : faire le point matériel/planning</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="emoji">🏠</span>
+                    Perso Avant 19h
+                </h2>
+                <ul class="task-list">
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task9">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Réceptionner Mariam</strong> (nounou jour)</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task10">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Briefer Bouchra</strong> (nounou soir)</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task11">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Préparer repas enfants</strong> pour ce soir</div>
+                        </div>
+                    </li>
+                    <li class="task-item">
+                        <input type="checkbox" class="checkbox" id="task12">
+                        <div class="task-text">
+                            <div class="task-desc"><strong>Se préparer</strong> pour resto Marion</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="stats">
+                <div class="stats-number" id="completedTasks">0</div>
+                <div class="stats-label">tâches terminées sur <span id="totalTasks">12</span></div>
+            </div>
+            
+            <div class="footer">
+                🎉 <strong>Ce soir : Anniversaire Marion au Poulish - 20h30</strong><br>
+                🌡️ Rappel canicule : 40°C aujourd'hui - Penser hydratation + pauses
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Gestion des tâches et progression
+        const checkboxes = document.querySelectorAll('.checkbox');
+        const progressBar = document.getElementById('progressBar');
+        const completedTasksSpan = document.getElementById('completedTasks');
+        const totalTasksSpan = document.getElementById('totalTasks');
+        
+        // Charger l'état sauvegardé
+        loadTaskStates();
+        
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.addEventListener('change', function() {
+                const taskItem = this.closest('.task-item');
+                
+                if (this.checked) {
+                    taskItem.classList.add('completed');
+                } else {
+                    taskItem.classList.remove('completed');
+                }
+                
+                updateProgress();
+                saveTaskStates();
+            });
+        });
+        
+        function updateProgress() {
+            const totalTasks = checkboxes.length;
+            const completedTasks = document.querySelectorAll('.checkbox:checked').length;
+            const percentage = (completedTasks / totalTasks) * 100;
+            
+            progressBar.style.width = percentage + '%';
+            completedTasksSpan.textContent = completedTasks;
+            totalTasksSpan.textContent = totalTasks;
+        }
+        
+        function saveTaskStates() {
+            const states = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('martinTodoStates', JSON.stringify(states));
+            localStorage.setItem('martinTodoDate', new Date().toDateString());
+        }
+        
+        function loadTaskStates() {
+            const savedDate = localStorage.getItem('martinTodoDate');
+            const today = new Date().toDateString();
+            
+            // Seulement charger si c'est le même jour
+            if (savedDate === today) {
+                const savedStates = localStorage.getItem('martinTodoStates');
+                if (savedStates) {
+                    const states = JSON.parse(savedStates);
+                    checkboxes.forEach((checkbox, index) => {
+                        if (states[index]) {
+                            checkbox.checked = true;
+                            checkbox.closest('.task-item').classList.add('completed');
+                        }
+                    });
+                }
+            }
+            
+            updateProgress();
+        }
+        
+        // Mise à jour de la date
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('fr-FR', options);
+        }
+        
+        // updateDate(); // Décommente si tu veux la date automatique
+    </script>
+</body>
+</html>
